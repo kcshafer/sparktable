@@ -1,0 +1,12 @@
+<design:component>
+    <design:attribute name="objectLabel" label="Related List Label" description="Enter the text you want to appear at the top of the SparkTable related list component"/>
+    <design:attribute name="objectAPI" label="Related Object API Name" description="Enter the API Name of the Object whose records you want to appear in SparkTable component. (Ex: Contacts or CustomObject__c)"/>
+    <design:attribute name="relatedFieldAPI" label="Related Object Relationship Field API Name" description="Enter the API Name of the lookup field on the Related Object that will be used to retrieve records. (Ex: If you wanted to display Contacts based on their Account, enter AccountID)"/>
+    <design:attribute name="recordIdField" label="Related Record Field API Name" description="If returning records related to the current object, leave blank. If returning a related list from a record via lookup or master-detail relationship, enter the API name of the lookup or master-detail field here. (Ex: If the current object is Opportunity and you want to return a list of Contacts for the Opportunity’s Account, enter AccountID)"/>
+    <design:attribute name="filterString" label="SOQL Filter" description="Enter a SOQL string to filter the Related Object records that are returned in the table. (Ex: CreatedDate >= Last_7_Days AND Title = CEO)"/>
+    <design:attribute name="fieldSetName" label="Field Set API Name" description="Enter the API Name of the Field Set that defines the Fields displayed in the table."/>
+    <design:attribute name="heightLimit" label="Max Table Height" description="Leave blank to display full table. Enter numeric value (pixels) to restrict table to specific height."/>
+    <design:attribute name="scrolling" label="Allow Height Scrolling" description="Check this box to add a scroll bar when setting a Max Table Height. When using Max Table Height, leaving this unchecked will limit the number of records displayed."/>
+    <design:attribute name="nullSort" label="Sort Null Value Behavior" description="When this box is checked, when SparkTable is sorted by any field, null values in that field will appear at the top of the list, otherwise they will appear at the bottom."/>
+    <design:attribute name="recordLimit" label="Record Limit" description="Enter the number of records you want to return in the related list, leave blank to return all related records."/>
+</design:component>

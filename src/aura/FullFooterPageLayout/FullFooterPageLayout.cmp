@@ -1,0 +1,22 @@
+<aura:component implements="lightning:recordHomeTemplate" description="Header with a 2/3 Left and 1/3 right with footer">
+	<aura:attribute name="left" type="Aura.Component[]" />
+    <aura:attribute name="right" type="Aura.Component[]" />
+    <aura:attribute name="header" type="Aura.Component[]" />
+    <aura:attribute name="footer" type="Aura.Component[]" />
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-p-bottom--small slds-size--1-of-1">
+            {!v.header}
+        </div>
+        <div class="slds-p-right--small slds-size--2-of-3">
+            {!v.left}
+        </div>
+        <div class="slds-p-left--small slds-size--1-of-3">
+            {!v.right}
+        </div>
+        <div class="slds-p-top--small slds-size--1-of-1">
+            {!v.footer}
+        </div>
+
+    </div>
+</aura:component>

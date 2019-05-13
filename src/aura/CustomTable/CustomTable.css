@@ -1,0 +1,16 @@
+.THIS .overlap{
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: auto;
+    text-overflow: ellipsis; 
+}
+.THIS .slds-form-element__label {
+    display: none;
+}
+.THIS tr, .THIS td {
+    border : 0.5px solid rgb(221, 219, 218) !important;
+    border-collapse : collapse;
+}
+.THIS tr {
+    padding : 0px;
+}

@@ -1,0 +1,88 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId" controller="CustomTableController" access="global">
+    <aura:attribute name="objectLabel" type="String" default="" access="global"/>
+    <aura:attribute name="fieldSetName" type="String" default="" access="global"/>
+    <aura:attribute name="objectAPI" type="String" default="" access="global"/>
+    <aura:attribute name="filterString" type="String" default="" access="global"/>
+    <aura:attribute name="heightLimit" type="String" default="" access="global"/>
+    <aura:attribute name="scrolling" type="Boolean" default="" access="global"/>
+    <aura:attribute name="relatedFieldAPI" type="String" default="" access="global"/>
+    <aura:attribute name="recordIdField" type="String" default="" access="global"/>
+    <aura:attribute name="records" type="String[]"/>
+    <aura:attribute name="fields" type="String[]"/>
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="nullSort" type="Boolean" default="" access="global"/>
+    <aura:attribute name="recordLimit" type="String" default="" access="global"/>
+    <aura:attribute name="arrowDirection" type="string" default="arrowup" description="Use for change arrow sign direction on header based on click"/>
+    <aura:attribute name="isAsc" type="boolean" default="true" description="boolean flag for pass sorting condition to apex class"/> 
+    <aura:attribute name="sortField" type="String" description="field the list is sorted by"/>
+    <aura:attribute name="customIcon" type="String" default="custom:custom9" access="global"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <article aura:id="gridContainer" class="slds-card" style="padding: 1rem;">
+        <div class="slds-p-around_none slds-m-around_none slds-border_top slds-border_bottom slds-border_left slds-border_right">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media--center slds-has-flexi-truncate slds-m-around_small">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container">
+                                <lightning:icon iconName="{!v.customIcon}" size="small"/>
+                            </span>
+                        </div>
+                        <div class="slds-media__body slds-truncate">
+                            <h2>
+                                <span class="slds-text-heading--small">{!v.objectLabel}</span>
+                                <lightning:button class="slds-float--right" label="New" onclick="{!c.newObj}"/>
+                            </h2>
+                        </div>
+                </header>
+            </div>
+            <div class="overlap slds-table slds-table--header-fixed_container slds-m-left_none slds-border_top slds-border_bottom slds-border_left slds-border_right">
+                <div aura:id="tableId" >
+                    <table class="overlap slds-scrollable_none slds-table--header-fixed slds-table slds-table_bordered slds-table_resizable-cols slds-table_fixed-layout" label="{!v.objectLabel}">
+                        <thead>
+                            <tr class="overlap slds-text-title_caps slds-grid">
+                                <aura:iteration var="f" items="{!v.fields}" >
+                                    <aura:if isTrue="{!f.label != 'Id'}" >
+                                        <th style="width: 3.25rem;" class="slds-is-sortable slds-cell-wrap slds-col slds-truncate" scope="col" data-sortField="{!f.apiName}" onclick="{!c.sort}">
+                                            <a href="" class="slds-truncate slds-th__action slds-text-link--reset slds-cell-fixed">
+                                                <span class="slds-truncate" title="{!f.label}">{!f.label}</span>  
+                                                <aura:if isTrue="{!and(v.arrowDirection == 'arrowdown', v.sortField == f.apiName)}">
+                                                    &nbsp;  &#9660;
+                                                </aura:if>  
+                                                <aura:if isTrue="{!and(v.arrowDirection != 'arrowdown', v.sortField == f.apiName)}">
+                                                    &nbsp;  &#9650;
+                                                </aura:if>
+                                            </a>
+                                        </th>
+                                    </aura:if>
+                                </aura:iteration>
+                                <th style="width: 3.25rem;" class="slds-is-sortable slds-cell-wrap slds-col slds-truncate" scope="col">
+                                    <a href="" class="slds-truncate slds-th__action slds-text-link--reset slds-cell-fixed">
+                                        Actions
+                                    </a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration var="c" items="{!v.records}" >
+                                <lightning:recordEditForm aura:id="read" objectApiName="{!v.objectAPI}" recordId="{!c.Id}">
+                                    <tr scope="row" class="overlap slds-grid">
+                                        <aura:iteration var="f" items="{!v.fields}" >
+                                            <aura:if isTrue="{!f.fieldType != 'ID'}">
+                                                <td id="inputId2" style="width: 3.25rem;" scope="col" class="overlap slds-cell-wrap slds-col slds-truncate">
+                                                    <lightning:inputField id="inputId1" fieldName="{!f.apiName}"/>
+                                                </td>
+                                            </aura:if>
+                                        </aura:iteration>
+                                        <td style="width: 3.25rem;" scope="col" class="slds-cell-wrap slds-col slds-truncate">
+                                            <lightning:button aura:id="submit" class="slds-size--1-of-1" label="Save" variant="brand" type="submit"/>
+                                        </td>
+                                    </tr>
+                                </lightning:recordEditForm>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </article> 
+</aura:component>

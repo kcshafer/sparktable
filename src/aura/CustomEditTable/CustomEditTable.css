@@ -1,0 +1,32 @@
+.THIS .overlap {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: visible;
+}
+.THIS .slds-form-element__label {
+    display: none;
+}
+.THIS tr {
+    border: 0.5px solid rgb(221, 219, 218);
+    border-collapse: collapse;
+    padding: 0px;
+    overflow: visible;
+}
+.THIS td {
+    padding: 0px;
+    overflow: visible;
+}
+.THIS .slds-input {
+    padding: 2px;
+    overflow: visible;
+}
+.THIS .select-auto-width > .slds-form-element__control > .slds-select_container {
+    display: inline-block;
+    size: 10px;
+}
+.THIS .slds-dropdown_fluid {
+    max-width: 300%;
+    width: 200%;
+    position: relative;
+    z-index: 9999999;
+}
